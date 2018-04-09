@@ -1,0 +1,106 @@
+class RadioWidget {
+  constructor() {
+    this.stations = [
+      {name: 'Putin FM', frequency: '66,6', cover: 'https://www.defatoonline.com.br/wp-content/uploads/2018/03/putin.jpg?w=800%&h=400'},
+      {name: 'Dribbble FM', frequency: '102,1', cover: 'https://slack-files2.s3-us-west-2.amazonaws.com/avatars/2015-12-15/16769299860_10d67877845c919e77d0_512.png'},
+      {name: 'Doge FM', frequency: '99,4', cover: 'https://t3.rbxcdn.com/abab9c91475ebf5a6c172a77e4e24708'},
+      {name: 'Ballads FM', frequency: '87,1', cover: 'https://t-eska.cdn.smcloud.net/common/9/6/s/964022wCiw.jpg/ru-0-r-650,0-n-964022wCiw_beatles_nowa_plyta.jpg'},
+      {name: 'Maximum FM', frequency: '142,2', cover: 'https://lastfm-img2.akamaized.net/i/u/ar0/e5f4caf8712f43abaea5e95879a90e47'}
+    ]
+    this.playing = false;
+    this.activeStation = '';
+  }
+  
+  loadStations() {
+    let stationsHolder = document.getElementsByClassName('c-radio__body');
+    let renderedStations = [];
+    
+    this.stations.map(item => {
+      renderedStations.push(
+        `
+          <div class="c-radio__station">
+            <div class="c-radio__stationBody isClosed">
+              <button class="c-radio__btn c-radio__btn--minus"></button>
+              <div class="c-radio__stationImg" style="background-image: url('${item.cover}');"></div>
+              <button class="c-radio__btn c-radio__btn--plus"></button>
+            </div>
+            <div class="c-radio__stationHeader">
+              <div class="c-radio__stationTitle">${item.name}</div>
+              <div class="c-radio__stationFreq">${item.frequency}</div>
+            </div>
+          </div>
+        `
+      );
+    });
+    
+    stationsHolder[0].innerHTML = renderedStations.join('');
+  }
+  
+  toggleStation(element) {
+    let stationsBody = document.getElementsByClassName('c-radio__stationBody');
+    let stationBody; 
+
+    if (element.className == 'c-radio__stationHeader') {
+      stationBody = element.previousElementSibling;
+    } else if (element.className == 'c-radio__stationTitle' || element.className == 'c-radio__stationFreq') {
+      stationBody = element.parentElement.previousElementSibling;
+    }
+    
+    for (let i = 0; i <= stationsBody.length-1; i++) {
+      if (stationsBody[i] !== stationBody) {
+        stationsBody[i].classList.add('isClosed');
+      }
+    }
+    
+    stationBody.classList.toggle('isClosed');
+  }
+  
+  setActiveStation(element) {  
+    let stationTitle;
+    
+    if (element.className == 'c-radio__stationHeader') {
+      stationTitle = element.firstChild.nextElementSibling.innerText;
+    } else if (element.className == 'c-radio__stationTitle') {
+      stationTitle = element.innerText;
+    } else if (element.className == 'c-radio__stationFreq') {
+      stationTitle = element.previousElementSibling.innerText;
+    }
+    
+    this.activeStation = stationTitle;
+  }
+  
+  showActiveStation() {
+    const stationTitleHolder = document.querySelector('.c-radio__playingNowTitle');
+    const stationTitleTagHolder = document.querySelector('.c-radio__playingNowTag');
+
+    if (this.activeStation == stationTitleHolder.innerText) {
+      stationTitleHolder.innerText = '';
+      stationTitleTagHolder.innerText = '';
+      this.activeStation = '';
+    } else {
+      stationTitleHolder.innerText = this.activeStation;
+      stationTitleTagHolder.innerText = 'currently playing';
+    }
+  }
+  
+  handleClick(element) {
+    this.toggleStation(element);
+    this.setActiveStation(element);
+    this.showActiveStation();
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  let station = document.getElementsByClassName('c-radio__stationHeader');
+  let radioOne = new RadioWidget();
+  radioOne.loadStations();
+
+  for (let i = 0; i <= station.length; i++) {
+    station[i].addEventListener('click', (e) => {
+      radioOne.handleClick(e.target);
+    })
+  }
+});
+
+
+

@@ -1,0 +1,217 @@
+body {
+  margin: 30px;
+  font-family: "HelveticaNeue", Helvetica, Arial, sans-serif;
+  background-color: #21212b;
+  padding: 50px;
+}
+
+.c-radio {
+  background-color: #30303b;
+  color: white;
+  width: 640px;
+  border-radius: 30px;
+  -webkit-box-shadow: 0px 30px 31px -5px #14141a;
+  -moz-box-shadow: 0px 30px 31px -5px #14141a;
+  box-shadow: 0px 30px 31px -5px #14141a;
+}
+.c-radio .c-radio__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #edae61;
+  border-top-left-radius: 28px;
+  border-top-right-radius: 28px;
+  padding: 60px 40px 60px 40px;
+  text-align: center;
+}
+.c-radio .c-radio__header .c-radio__title {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 44px;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 36px;
+}
+.c-radio .c-radio__header .c-radio__btn--previous {
+  height: 36px;
+  background: none;
+  border: 0;
+}
+.c-radio .c-radio__header .c-radio__btn--previous:before, .c-radio .c-radio__header .c-radio__btn--previous:after {
+  display: block;
+  content: '';
+  width: 33px;
+  height: 4px;
+  background-color: white;
+  border-radius: 2px;
+  transform-origin: left;
+  margin-bottom: -6.5px;
+}
+.c-radio .c-radio__header .c-radio__btn--previous:before {
+  transform: rotate(-45deg);
+}
+.c-radio .c-radio__header .c-radio__btn--previous:after {
+  transform: rotate(45deg);
+}
+.c-radio .c-radio__header .c-radio__btn--switcher {
+  position: relative;
+  top: -3px;
+  height: 37px;
+  background: none;
+  border: 0;
+}
+.c-radio .c-radio__header .c-radio__btn--switcher:after {
+  display: block;
+  content: '';
+  width: 37px;
+  height: 37px;
+  border: 4px solid white;
+  border-radius: 3em;
+}
+.c-radio .c-radio__header .c-radio__btn--switcher:before {
+  position: absolute;
+  top: -13px;
+  left: calc(40px/2);
+  height: 22px;
+  display: block;
+  content: '';
+  width: 4px;
+  border: 6px solid #edae61;
+  border-radius: 3em;
+  background-color: white;
+}
+.c-radio .c-radio__body {
+  padding: 20px 40px 60px 40px;
+  height: 690px;
+  overflow-y: scroll;
+}
+.c-radio .c-radio__body::-webkit-scrollbar {
+  display: none;
+}
+.c-radio .c-radio__body .c-radio__station {
+  width: 100%;
+  font-size: 44px;
+  line-height: 36px;
+  color: #a2abbd;
+  border-bottom: 2px solid #43434d;
+}
+.c-radio .c-radio__body .c-radio__station:last-child {
+  border-bottom: none;
+}
+.c-radio .c-radio__body .c-radio__station .c-radio__stationBody {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 50px;
+  padding-bottom: 20px;
+  height: 300px;
+  opacity: 1;
+  visibility: visible;
+  transition: 0.2s all ease-in-out;
+  overflow: hidden;
+}
+.c-radio .c-radio__body .c-radio__station .c-radio__stationBody.isClosed {
+  height: 0;
+  opacity: 0;
+  visibility: hidden;
+  padding: 0;
+}
+.c-radio .c-radio__body .c-radio__station .c-radio__stationBody .c-radio__btn--minus, .c-radio .c-radio__body .c-radio__station .c-radio__stationBody .c-radio__btn--plus {
+  height: 65px;
+  width: 65px;
+  background: none;
+  border: 4px solid #a2abbd;
+  border-radius: 100%;
+}
+.c-radio .c-radio__body .c-radio__station .c-radio__stationBody .c-radio__btn--minus:before, .c-radio .c-radio__body .c-radio__station .c-radio__stationBody .c-radio__btn--plus:before {
+  position: relative;
+  left: 6px;
+  right: 6px;
+  display: block;
+  content: '';
+  width: 33px;
+  height: 4px;
+  background-color: #a2abbd;
+  border-radius: 2px;
+}
+.c-radio .c-radio__body .c-radio__station .c-radio__stationBody .c-radio__btn--plus {
+  position: relative;
+}
+.c-radio .c-radio__body .c-radio__station .c-radio__stationBody .c-radio__btn--plus:after {
+  position: absolute;
+  left: 12px;
+  top: 26.5px;
+  display: block;
+  content: '';
+  width: 33px;
+  height: 4px;
+  background-color: #a2abbd;
+  border-radius: 2px;
+  transform: rotate(90deg);
+  transform-origin: center;
+}
+.c-radio .c-radio__body .c-radio__station .c-radio__stationBody .c-radio__stationImg {
+  width: 290px;
+  height: 290px;
+  border: 4px solid #a2abbd;
+  border-radius: 100%;
+  background-color: #21212b;
+  background-image: url("https://lastfm-img2.akamaized.net/i/u/ar0/e5f4caf8712f43abaea5e95879a90e47");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.c-radio .c-radio__body .c-radio__station .c-radio__stationHeader {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #30303b;
+}
+.c-radio .c-radio__body .c-radio__station .c-radio__stationHeader:hover {
+  cursor: pointer;
+}
+.c-radio .c-radio__body .c-radio__station .c-radio__stationHeader .c-radio__stationTitle {
+  display: inline-block;
+}
+.c-radio .c-radio__body .c-radio__station .c-radio__stationHeader .c-radio__stationFreq {
+  display: inline-block;
+  font-weight: 700;
+}
+.c-radio .c-radio__footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 160px;
+  background-color: #22222b;
+  border-bottom-left-radius: 28px;
+  border-bottom-right-radius: 28px;
+  padding: 0 40px;
+  text-align: center;
+  border-top: 2px solid #43434d;
+}
+.c-radio .c-radio__footer .c-radio__playingNowTag {
+  font-size: 22px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #edae61;
+  line-height: 20px;
+  margin-bottom: 15px;
+}
+.c-radio .c-radio__footer .c-radio__playingNowTitle {
+  font-size: 44px;
+  color: #a2abbd;
+  line-height: 36px;
+}
+.c-radio .c-radio__btn {
+  display: inline-block;
+  vertical-align: middle;
+  outline: none;
+}
+.c-radio .c-radio__btn:hover {
+  cursor: pointer;
+}
